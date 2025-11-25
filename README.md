@@ -1,8 +1,21 @@
-💜 README.md — COMPLETO E PRONTO PARA USO
 # 📌 ToDoRank – Aplicação Web de Lista de Tarefas com Ranking por Prioridade
 
-Este projeto foi desenvolvido para a disciplina **Algoritmos e Complexidade em Aplicações Web/Mobile**, seguindo o roteiro fornecido pelo professor.  
-A aplicação permite cadastrar tarefas, concluí-las, excluí-las e visualizar um **ranking ordenado** pela prioridade.
+Este projeto foi desenvolvido para a disciplina **Algoritmos e Complexidade em Aplicações Web/Mobile**, seguindo o roteiro oficial do professor.  
+A aplicação permite **cadastrar tarefas, marcá-las como concluídas, excluir e visualizar um ranking ordenado pela prioridade**.
+
+---
+
+# 🌐 Links do Projeto
+
+### 🔗 **Site (Frontend) — hospedado no Netlify**
+👉 https://todorank-frontend.netlify.app/
+
+Esse é o link que deve ser usado para **apresentação e demonstração**.
+
+### 🔗 **Backend (API) — hospedado no Render**
+👉 https://todorank.onrender.com
+
+O frontend já está configurado para consumir automaticamente essa API.
 
 ---
 
@@ -10,8 +23,8 @@ A aplicação permite cadastrar tarefas, concluí-las, excluí-las e visualizar 
 
 ### **Frontend**
 - HTML5  
-- CSS3 (tema violeta, estilo limpo e feminino)  
-- JavaScript (DOM, eventos e Fetch API)
+- CSS3  
+- JavaScript (DOM, eventos, Fetch API)
 
 ### **Backend**
 - Node.js  
@@ -19,163 +32,134 @@ A aplicação permite cadastrar tarefas, concluí-las, excluí-las e visualizar 
 - CORS
 
 ### **Banco de Dados**
-- Estrutura **em memória** (array de objetos)
+- Estrutura em **array de objetos (em memória)**
 
 ---
 
 # 🧠 2. Estruturas de Dados Utilizadas
 
-O projeto utiliza principalmente:
+A aplicação utiliza principalmente:
 
-### ✔ **Array (lista linear)**
-Todas as tarefas são armazenadas em um array JavaScript:
+### ✔ **Array**
 
 ```js
 let tasks = [];
-
-
 Cada tarefa possui o formato:
 
+js
+Copiar código
 {
   id: Number,
   name: String,
   priority: Number,
   completed: Boolean
 }
+Por que Array?
 
-✔ Justificativa
+Inserção O(1)
 
-Arrays permitem:
+Filtragem simples
 
-Inserção simples (O(1))
+Fácil ordenação
 
-Filtragem eficiente
-
-Ordenação com algoritmos clássicos
-
-Manipulação com métodos nativos modernos
+Fácil manipulação
 
 🧮 3. Análise de Algoritmos e Complexidade
-
-Aqui está a análise exigida no roteiro do professor:
-
 3.1 Inserção de tarefas
-
-Operação: adicionar objeto ao array
-
+js
+Copiar código
 tasks.push(task);
-
-
 Melhor caso: O(1)
 
-Caso médio: O(1)
+Médio: O(1)
 
-Pior caso: O(1)
-
-Motivo: push insere no final da lista.
+Pior: O(1)
+Inserção sempre no final da lista.
 
 3.2 Exclusão de tarefas
+js
+Copiar código
 tasks = tasks.filter(t => t.id !== id);
-
-
 Melhor caso: O(n)
 
 Médio: O(n)
 
 Pior: O(n)
-
-Filtragem exige percorrer toda a lista.
+A filtragem percorre toda a lista.
 
 3.3 Marcar tarefa como concluída
+js
+Copiar código
 tasks.map(...)
+Todos os casos: O(n)
 
+3.4 Geração do Ranking
+js
+Copiar código
+unique.sort((a, b) => b.priority - a.priority);
+O JavaScript usa TimSort:
 
 Melhor: O(n)
 
-Médio: O(n)
-
-Pior: O(n)
-
-3.4 Geração do Ranking
-unique.sort((a, b) => b.priority - a.priority);
-
-Algoritmo de ordenação usado: MergeSort/TimSort (nativo do JS)
-
-Pior caso: O(n log n)
-
 Médio: O(n log n)
 
-Melhor: O(n) quando parcialmente ordenado
+Pior: O(n log n)
 
-O JavaScript usa TimSort, combinação de MergeSort + InsertionSort.
-
-3.5 Remoção de duplicatas no ranking
+3.5 Remoção de duplicatas
+js
+Copiar código
 unique.some(...)
-
-
-Complexidade total: O(n²) no pior caso
-Mas como n é pequeno (tarefas), não afeta o desempenho.
+Complexidade total: O(n²)
+(Como são poucas tarefas, não afeta o desempenho.)
 
 📊 4. Endpoints da API
-POST /tasks
+Método	Rota	Descrição
+POST	/tasks	Adiciona tarefa
+GET	/tasks	Lista todas as tarefas
+PUT	/tasks/:id	Marca como concluída
+DELETE	/tasks/:id	Exclui tarefa
+GET	/rank	Retorna ranking por prioridade
 
-Adiciona tarefa.
+🛠 5. Como Rodar o Projeto Localmente
+✔ Passo 1 — Baixar o projeto
+Certifique-se de que tem as pastas:
 
-GET /tasks
-
-Lista todas as tarefas.
-
-PUT /tasks/:id
-
-Concluir tarefa.
-
-DELETE /tasks/:id
-
-Excluir tarefa.
-
-GET /rank
-
-Retorna ranking por prioridade.
-
-🛠 5. Como Rodar o Projeto
-✔ Passo 1 — Baixar o projeto no computador
-
-Coloque as pastas:
-
+bash
+Copiar código
 /backend
 /frontend
-
-✔ Passo 2 — Instalar dependências (dentro da pasta backend)
-
+✔ Passo 2 — Instalar dependências
 No terminal:
 
+bash
+Copiar código
 cd backend
-npm install express cors
-
+npm install
 ✔ Passo 3 — Rodar o backend
+bash
+Copiar código
 node server.js
+O servidor iniciará em:
 
-
-O servidor abrirá em:
-
-http://localhost:3000
+👉 http://localhost:3000
 
 ✔ Passo 4 — Rodar o frontend
+Abra o arquivo:
 
-Basta abrir o arquivo:
-
+bash
+Copiar código
 frontend/index.html
-
-
 no navegador.
 
-🟣 6. Funcionalidades da Aplicação
-
+🟣 6. Funcionalidades
 ✔ Adicionar tarefas
 ✔ Listar tarefas
-✔ Concluir tarefa (fica riscada)
+✔ Concluir tarefa (tarefa riscada)
 ✔ Excluir tarefa
-✔ Ranking ordenado (maior prioridade primeiro)
-✔ Remoção de duplicatas
-✔ Interface feminina, visual violeta
-✔ Frase motivacional
+✔ Ranking de prioridades
+✔ Remoção automática de duplicatas
+✔ Layout violeta estilizado
+
+💜 7. Frase motivacional
+“Organizar suas tarefas é o primeiro passo para organizar sua vida.”
+
